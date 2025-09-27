@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-router",
+  "name": "isra-react-portfolio",
   "version": "1.0.0",
-  "description": "Basic skeleton codebase for React/Redux/Router applications.",
+  "description": "Personal Portfolio app, with react.",
   "scripts": {
     "preinstall": "npm set audit false",
     "start": "webpack-dev-server --config webpack/dev.config.js --watch",
@@ -25,7 +25,7 @@
     "sass",
     "css module"
   ],
-  "author": "Your Name Here",
+  "author": "Israel",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/bottega-code-school/js-builder/issues"
@@ -34,7 +34,7 @@
   "dependencies": {
     "ajv": "6.12.0",
     "autoprefixer": "^9.1.0",
-    "axios": "0.21.1",
+    "axios": "1.8",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^7.2.3",

@@ -1,17 +1,62 @@
 //Creacion de un componente funcional
-import React from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import React, {Component} from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 
-export default function(props) {
+export default class PortfolioItem extends Component {
+    //Data that we'll need:
+    // -background image :  thumb_image_url
+    // - logo
+    // - description : description
+    // -id :    id
+    constructor(props){
+        super(props);
+
+        this.state = {
+            portfolioItemClass: ""
+        };
+    }
+
+    //Manejadores de eventos
+    handleMouseEnter(){ 
+        this.setState({portfolioItemClass: "image-blur"});
+    }
+    handleMouseLeave(){
+        this.setState({portfolioItemClass: ""});
+
+    }
+
+
+    render(){
+    const { id, description,thumb_image_url, logo_url} = this.props.item;
+
     return(
-        <div>
-            <br></br>
-            <h3>Post: {props.position}</h3>
-            <h3>Nombre: {props.name}</h3>
-            <h4>
-            <Link to= {props.url}> {props.url} </Link>
-            </h4>
-            <br></br>
+        <div 
+            className="portfolio-item-wrapper"
+            onMouseEnter={() => this.handleMouseEnter()} //si no se coloca la llamada a handleMouseEnter() dentro de una funcion flecha, se ejecuta automaticamente al renderizar el componente 
+            onMouseLeave={() => this.handleMouseLeave()}
+            
+        >
+            <div
+             className={"portfolio-img-background " + this.state.portfolioItemClass} //Añade la clase que maneja el estado
+             style={{
+                backgroundImage: "url(" + thumb_image_url + ")"
+              }}
+            />
+           
+           <div className="img-text-wrapper">
+                <div className="logo-wrapper">
+                    <img src={logo_url} alt="isra" />
+                </div>
+
+                <div className="subtitle">             
+                    {description}
+                </div>
+            </div>
+         
+            {/* <Link to= {`/portfolio/${id}`}>Link</Link> */}
+          
+            
         </div>
     );
+    }
 }

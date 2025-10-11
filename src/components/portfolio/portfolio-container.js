@@ -14,7 +14,8 @@ export default class PortfolioContainer extends Component {
        this.state = {
       pageTitle: "Welcome to my portfolio",
       isLoading: false,
-      data: []
+      data: [],
+      allData: [] //copia de todos los datos para poder filtrar despues
     };
 
     this.handleFilter = this.handleFilter.bind(this);
@@ -23,7 +24,7 @@ export default class PortfolioContainer extends Component {
 
   handleFilter(filter) {
     this.setState({
-      data: this.state.data.filter(item => {
+      data: this.state.allData.filter(item => {
         return item.category === filter;
       })
     });
@@ -32,32 +33,33 @@ export default class PortfolioContainer extends Component {
     
     //Loop over data
     portfolioItems() {
-        
-        return this.state.data.map((item) => {
+           return this.state.data.map((item) => {
             return <PortfolioItem  
-            key={item.position}
-            position={item.position}
-            name={item.name} 
-            category={item.category}
-            url={item.url}/>;
+            key={item.id} //key es un atributo especial que usa react para identificar cada elemento de una lista
+            item={item} //pasamos el objeto completo al componente PortfolioItem
+           />;
         })
 
     }
 
       getPortfolioItems() {
+   
     // Make a request for a user 
     axios.get('https://isradev.devcamp.space/portfolio/portfolio_items')
+
       .then(response => {
         // handle success
-        console.log(response);
-        this.setState({
-          data: response.data.portfolio_items
+          this.setState({
+           data: response.data.portfolio_items,
+           allData: response.data.portfolio_items //guardamos una copia de todos los datos para poder filtrar despues
         });
       })
+
       .catch(error => {
         // handle error
         console.log(error);
       })
+
       .finally(() =>{
         // always executed
       });
@@ -75,21 +77,27 @@ export default class PortfolioContainer extends Component {
     }
       
     return (
-      <div>
-        <h2>{this.state.pageTitle}</h2>
+        <div>
+            <div className="portfolio-filter-buttons">
+              <button className="btn" onClick={() => this.setState({ data: this.state.allData })}>
+                Todos
+            </button>
+            <button className="btn" onClick={() => this.handleFilter("education")}>
+                Educación
+            </button>
+            <button className="btn" onClick={() => this.handleFilter("Technology")}>
+                 Tecnología
+            </button>
+            <button className="btn" onClick={() => this.handleFilter("social media")}>
+                Social Media
+            </button>
+        </div>
 
-        <button onClick={() => this.handleFilter("eCommerce")}>
-          eCommerce
-        </button>
-        <button onClick={() => this.handleFilter("Scheduling")}>
-          Scheduling
-        </button>
-        <button onClick={() => this.handleFilter("Enterprise")}>
-          Enterprise
-        </button>
-
-        {this.portfolioItems()}
-      </div>
+            <div className="portfolio-items-wrapper">
+                {this.portfolioItems()}
+            </div>
+        </div>
+      
     );
     }
 }

@@ -1,12 +1,38 @@
-import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import React from "react";
+import axios from "axios";
+import { NavLink, withRouter } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
-export default class NavigationComponent extends Component {
-  constructor() {
-    super();
+
+const NavigationComponent = (props) => {  
+  
+  const dynamycLink = (route,linkText) => {
+    return (
+       <div className="nav-link-wrapper">
+                <NavLink to="/blog" activeClassName="nav-link-active">
+                  Blog
+                </NavLink>
+          </div>
+
+    );
   }
 
-  render() {
+  //logout
+  const handleSignOut = () => {
+    axios.delete("https://api.devcamp.space/logout", { withCredentials: true })
+      .then(response => {
+        if (response.status === 200) {
+          props.history.push("/"); 
+          props.handleSuccessfulLogout(); // Llamamos a la funcion que maneja el logout exitoso
+        }
+        return response.data; // Cuando se trabaja con promesas, siempre es buena idea devolver algo
+      })
+      .catch(error => {
+        console.log("Error sign out", error);
+      });
+  };
+
     return (
       <div className="nav-wrapper">
           <div className="left-side">
@@ -25,17 +51,24 @@ export default class NavigationComponent extends Component {
                   Contact
                 </NavLink>
           </div>
-          <div className="nav-link-wrapper">
-                <NavLink to="/blog" activeClassName="nav-link-active">
-                  Blog
-                </NavLink>
+          {props.loggedInStatus === "LOGGED_IN" ? dynamycLink("/blog","Blog") : null}
+
+            
           </div>
 
-            {false ? <button>Add Blog</button> : null}
-          </div>
+          <div className="right-side">
+            <div className="right-side-wrapper">
+             Israel Villar 
+            </div>
+            <div className="right-side-wrapper">
+              {props.loggedInStatus === "LOGGED_IN" ? 
+                (<a onClick={handleSignOut}>
+                  <FontAwesomeIcon icon={faSignOutAlt} /> Sign Out
 
-          <div className="right-side">Israel Villar</div>
+                </a> ) : null}
+            </div>
+          </div>
       </div>
     );
-  }
-}
+  };
+export default withRouter(NavigationComponent);

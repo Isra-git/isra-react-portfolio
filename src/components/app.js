@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 //componentes de react router para manejar las rutas
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import NavigationContainer from "./navigation/navigation-container";
 import Home from "./pages/home";
 import About from "./pages/about";
@@ -26,6 +26,7 @@ export default class App extends Component {
 
     this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
     this.handleUnSuccessfulLogin = this.handleUnSuccessfulLogin.bind(this);
+    this.handleSuccessfulLogout = this.handleSuccessfulLogout.bind(this);
   }
   
   //logeado con exito
@@ -34,8 +35,15 @@ export default class App extends Component {
     loggedInStatus: "LOGGED_IN"
   });
 }
-
+// no logeado
 handleUnSuccessfulLogin() {
+  this.setState({
+    loggedInStatus: "NOT_LOGGED_IN"
+  });
+}
+
+//Cierra sesion
+handleSuccessfulLogout() {
   this.setState({
     loggedInStatus: "NOT_LOGGED_IN"
   });
@@ -68,9 +76,17 @@ checkLoginStatus() {
       });
   }
 
+//Comprobamos el estado del login cuando el componente se monta para saber si el usuario ya estaba logeado
   componentDidMount() {
     this.checkLoginStatus();
   }
+
+  autorizedPages() {
+    return [
+      <Route path="/blog" component={Blog} />
+    ];
+  }
+
   
   render() {
 
@@ -79,7 +95,10 @@ checkLoginStatus() {
          <Router>
           <div>
            
-            <NavigationContainer />
+            <NavigationContainer
+             loggedInStatus={this.state.loggedInStatus} 
+             handleSuccessfulLogout={this.handleSuccessfulLogout}
+             />
 
             <h2>{this.state.loggedInStatus}</h2>
 
@@ -100,7 +119,11 @@ checkLoginStatus() {
               <Route path="/portfolio" component={Auth} />
               <Route path="/about-me" component={About} />
               <Route path="/contact" component={Contact} />
-              <Route path="/blog" component={Blog} />
+              
+              {/* Comprueba si estas logeado para ver la pagina */}
+              {this.state.loggedInStatus === "LOGGED_IN" ? (
+                this.autorizedPages()): (<Redirect to="/auth" />)}
+
               <Route path="/portfolio/:id" component={PortfolioDetail} />
             </Switch>
 

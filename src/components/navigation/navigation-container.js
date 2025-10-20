@@ -10,8 +10,8 @@ const NavigationComponent = (props) => {
   const dynamycLink = (route,linkText) => {
     return (
        <div className="nav-link-wrapper">
-                <NavLink to="/blog" activeClassName="nav-link-active">
-                  Blog
+                <NavLink to={route} activeClassName="nav-link-active">
+                  {linkText}
                 </NavLink>
           </div>
 
@@ -51,7 +51,14 @@ const NavigationComponent = (props) => {
                   Contact
                 </NavLink>
           </div>
-          {props.loggedInStatus === "LOGGED_IN" ? dynamycLink("/blog","Blog") : null}
+          <div className="nav-link-wrapper">
+                <NavLink to="/blog" activeClassName="nav-link-active">
+                  Blog
+                </NavLink>
+          </div>
+          {props.loggedInStatus === "LOGGED_IN"
+           ? dynamycLink("/portfolio-manager","Portfolio Manager") : 
+           null}
 
             
           </div>
@@ -63,7 +70,8 @@ const NavigationComponent = (props) => {
             <div className="right-side-wrapper">
               {props.loggedInStatus === "LOGGED_IN" ? 
                 (<a onClick={handleSignOut}>
-                  <FontAwesomeIcon icon={faSignOutAlt} /> Sign Out
+                  <FontAwesomeIcon icon={faSignOutAlt} />
+                   Sign Out
 
                 </a> ) : null}
             </div>

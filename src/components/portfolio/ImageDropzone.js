@@ -1,13 +1,18 @@
 // ImageDropzone.js
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState,
+  useEffect,
+  forwardRef,
+  useImperativeHandle
+} from 'react';
 import { useDropzone } from 'react-dropzone';
 
-//Importamos fontAwensome
+// Importamos FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileImage } from '@fortawesome/free-regular-svg-icons';
 
-
-export default function ImageDropzone({ onFileSelect, label }) {
+// Componente funcional con forwardRef para exponer métodos al padre
+const ImageDropzone = forwardRef(({ onFileSelect, label }, ref) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
 
@@ -22,17 +27,26 @@ export default function ImageDropzone({ onFileSelect, label }) {
         const file = acceptedFiles[0];
         setSelectedFile(file);
         setPreviewUrl(URL.createObjectURL(file));
-        onFileSelect(file);
+        if (onFileSelect) onFileSelect(file);
       }
     }
   });
 
+  // Método para eliminar la imagen seleccionada
   const handleRemove = () => {
     setSelectedFile(null);
     setPreviewUrl(null);
-    onFileSelect(null);
+    if (onFileSelect) onFileSelect(null);
   };
 
+  // Exponemos el método clearDropzone al componente padre
+  useImperativeHandle(ref, () => ({
+    clearDropzone() {
+      handleRemove();
+    }
+  }));
+
+  // Liberamos la URL de la imagen cuando se desmonta
   useEffect(() => {
     return () => {
       if (previewUrl) {
@@ -56,42 +70,48 @@ export default function ImageDropzone({ onFileSelect, label }) {
               alt="Previsualización"
               className="dropzone-image"
             />
-           <button
-            type="button"
-            className="dropzone-remove-button"
-            onClick={(e) => {
-              e.stopPropagation(); // evita que se active la búsqueda de archivos
-              handleRemove();
-  }}
->
-  Eliminar imagen
-</button>
-
+            <button
+              type="button"
+              className="dropzone-remove-button"
+              onClick={(e) => {
+                e.stopPropagation(); // evita que se active la búsqueda de archivos
+                handleRemove();
+              }}
+            >
+              Eliminar imagen
+            </button>
           </div>
         ) : (
           <div className="dropzone-text">
             <div className="dropzone-icon">
-  <FontAwesomeIcon 
-    icon={faFileImage} 
-    size="2xl" 
-    style={{ color: '#9cd289', fontSize: '2.5rem', marginBottom: '8px' }}
- />
- <FontAwesomeIcon 
-    icon={faFileImage} 
-    size="2xl" 
-    style={{ color: '#9cd289', fontSize: '2.5rem', marginBottom: '8px' }}
- />
- </div>
-  <p>
-     PGN   -   JPG<br/>
-    {isDragActive
-      ? "Suelta la imagen aquí..."
-      : "Arrastra o haz clic para subir una imagen"}
-  </p>
-</div>
-
+              <FontAwesomeIcon
+                icon={faFileImage}
+                style={{
+                  color: '#9cd289',
+                  fontSize: '2.5rem',
+                  marginBottom: '8px'
+                }}
+              />
+              <FontAwesomeIcon
+                icon={faFileImage}
+                style={{
+                  color: '#9cd289',
+                  fontSize: '2.5rem',
+                  marginBottom: '8px'
+                }}
+              />
+            </div>
+            <p>
+              PNG – JPG<br />
+              {isDragActive
+                ? 'Suelta la imagen aquí...'
+                : 'Arrastra o haz clic para subir una imagen'}
+            </p>
+          </div>
         )}
       </div>
     </div>
   );
-}
+});
+
+export default ImageDropzone;

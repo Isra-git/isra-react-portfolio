@@ -1,0 +1,26 @@
+.portfolio-form-wrapper {
+    @include base-grid();
+    grid-template-columns: 1fr;
+    padding: 42px;
+    margin-top: 0px;
+
+    @include input-element();
+    input {
+        margin-bottom: 10px;
+    }
+
+    .titulo-form {
+        text-align: center;
+        margin-bottom: 5px;
+
+        h2 {
+            font-family: 'Titillium Web', sans-serif;
+            color: $charcoal;
+            font-weight: 400;
+        }
+    }
+
+    .btn-form-wrapper {
+     text-align: center;
+}
+}

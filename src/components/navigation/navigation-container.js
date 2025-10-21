@@ -1,9 +1,11 @@
 import React from "react";
 import axios from "axios";
 import { NavLink, withRouter } from "react-router-dom";
+
+// Importamos FontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 
 const NavigationComponent = (props) => {  
   
@@ -63,19 +65,33 @@ const NavigationComponent = (props) => {
             
           </div>
 
+            
           <div className="right-side">
-            <div className="right-side-wrapper">
-             Israel Villar 
-            </div>
-            <div className="right-side-wrapper">
-              {props.loggedInStatus === "LOGGED_IN" ? 
-                (<a onClick={handleSignOut}>
-                  <FontAwesomeIcon icon={faSignOutAlt} />
-                   Sign Out
+              <div className="right-side-wrapper">
+                {props.loggedInStatus === "LOGGED_IN" ? (
+                 
+                 <div className="user-info">
+                  <span className="user-greeting">Hola </span>
+                  <span className="user-email">{props.userEmail && props.userEmail.split("@")[0]}</span>
 
-                </a> ) : null}
-            </div>
-          </div>
+                  <a onClick={handleSignOut} 
+                    className="icon-link" 
+                    aria-label="Cerrar sesión">
+                    <FontAwesomeIcon icon={faSignOutAlt} />
+                  </a>
+                </div>
+
+
+
+                ) : (
+                  <NavLink to="/auth" className="icon-link" aria-label="Iniciar sesión">
+                    ENTRAR<FontAwesomeIcon icon={faCircleUser} />
+                  </NavLink>
+                )}
+              </div>
+</div>
+
+
       </div>
     );
   };

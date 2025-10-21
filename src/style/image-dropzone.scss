@@ -26,7 +26,7 @@
 
 // Área de drop interactiva
 .dropzone-area {
-  border: 2px dashed #aaa;
+  border: 2px dashed $dark-teal;
   padding: 2px;
   text-align: center;
   cursor: pointer;
@@ -82,8 +82,8 @@
 }
 
 .dropzone-remove-button {
-  background: #f44336; // o el color que prefieras
-  color: #fff;
+  background: $dark-teal;
+  color: $charcoal;
   border: none;
   padding: 0.3rem 0.8rem;
   border-radius: 4px;
@@ -92,7 +92,8 @@
 }
 
 .dropzone-remove-button:hover {
-  background-color: #d32f2f;
+  background-color: $warning;
+  color: $offwhite;
 }
 .dropzone-icon {
   display: flex;

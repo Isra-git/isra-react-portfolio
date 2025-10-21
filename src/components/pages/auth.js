@@ -15,8 +15,8 @@ export default class Auth extends Component {
 
     //Si el login es exitoso, llamamos a la funcion que nos pasan por props desde app.js
     // y redirigimos al usuario a la pagina principal
-    handleSuccessfulAuth(){
-        this.props.handleSuccessfulLogin();
+    handleSuccessfulAuth(email){
+        this.props.handleSuccessfulLogin(email);
         this.props.history.push("/");
 
     }

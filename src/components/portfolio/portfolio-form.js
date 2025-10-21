@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ImageDropzone from './ImageDropzone';
 
+
 export default class PortfolioForm extends Component {
   constructor(props) {
     super(props);
@@ -103,10 +104,12 @@ export default class PortfolioForm extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Portfolio Form</h1>
-        <form onSubmit={this.handleSubmit}>
-          <div>
+        
+        <form onSubmit={this.handleSubmit} className='portfolio-form-wrapper'>
+        <div className='one-column titulo-form'>
+            <h2>Añade nuevos proyectos a tu portfolio :</h2>
+        </div>
+          <div className='two-column'>
             <input
               type="text"
               name="name"
@@ -123,7 +126,7 @@ export default class PortfolioForm extends Component {
             />
           </div>
 
-          <div>
+          <div className='two-column'>
             <input
               type="text"
               name="position"
@@ -135,6 +138,7 @@ export default class PortfolioForm extends Component {
               name="category"
               value={this.state.category}
               onChange={this.handleChange}
+              className='select-element'
             >
               <option value="Technology">Technology</option>
               <option value="social media">Social Media</option>
@@ -142,7 +146,7 @@ export default class PortfolioForm extends Component {
             </select>
           </div>
 
-          <div>
+          <div className='one-column'>
             <textarea
               type="text"
               name="description"
@@ -152,30 +156,33 @@ export default class PortfolioForm extends Component {
             />
           </div>
 
-          <div className="dropzone-group">
+          <div className="dropzone-group three-column">
             {/* Dropzones para imágenes */}
             <ImageDropzone
               ref={this.thumbRef}
-              label="Thumb Image"
+              label="Thumbnail"
               onFileSelect={(file) => this.handleImageDrop("thumb_image", file)}
             />
             <ImageDropzone
               ref={this.bannerRef}
-              label="Banner Image"
+              label="Banner"
               onFileSelect={(file) => this.handleImageDrop("banner_image", file)}
             />
             <ImageDropzone
               ref={this.logoRef}
-              label="Logo Image"
+              label="Logo"
               onFileSelect={(file) => this.handleImageDrop("logo", file)} // ← usamos "logo"
             />
           </div>
 
-          <div>
-            <button type="submit">Save</button>
+          <div className='btn-form-wrapper'>
+            <button 
+            type="submit"
+            className='btn'
+            >Save</button>
           </div>
         </form>
-      </div>
+      
     );
   }
 }

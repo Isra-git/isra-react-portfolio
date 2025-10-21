@@ -21,6 +21,7 @@ export default class App extends Component {
 
     this.state = {
       loggedInStatus: "NOT_LOGGED_IN",
+      userEmail: ""
     };
 
     this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
@@ -29,9 +30,13 @@ export default class App extends Component {
   }
 
   //Logeado con éxito
-  handleSuccessfulLogin() {
+  handleSuccessfulLogin(email) {
+    //Guardamos el email del usuario en el almacenamiento local
+     localStorage.setItem("userEmail", email);
+     // Actualizamos el estado
     this.setState({
-      loggedInStatus: "LOGGED_IN"
+      loggedInStatus: "LOGGED_IN",
+      userEmail: email
     });
   }
 
@@ -76,10 +81,16 @@ export default class App extends Component {
       });
   }
 
-  //Comprobamos el estado del login cuando el componente se monta para saber si el usuario ya estaba logeado
+  //Comprobamos el estado del login cuando el componente se monta para saber si 
+  // el usuario ya estaba logeado y si esta guardado el mail en el almacenamiento local
   componentDidMount() {
-    this.checkLoginStatus();
-  }
+  this.checkLoginStatus().then(() => {
+    const savedEmail = localStorage.getItem("userEmail");
+    if (savedEmail && this.state.loggedInStatus === "LOGGED_IN") {
+      this.setState({ userEmail: savedEmail });
+    }
+  });
+}
 
   //Rutas que solo se renderizan si estás logeado
   authorizedPages() {
@@ -95,6 +106,8 @@ export default class App extends Component {
             <NavigationContainer
               loggedInStatus={this.state.loggedInStatus}
               handleSuccessfulLogout={this.handleSuccessfulLogout}
+              userEmail={this.state.userEmail}
+
             />
 
             <Switch>
@@ -108,6 +121,7 @@ export default class App extends Component {
                     handleSuccessfulLogin={this.handleSuccessfulLogin}
                     handleUnSuccessfulLogin={this.handleUnSuccessfulLogin}
                     loggedInStatus={this.state.loggedInStatus}
+                    userEmail={this.state.userEmail}
                   />
                 )}
               />

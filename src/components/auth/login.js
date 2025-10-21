@@ -36,7 +36,7 @@ export default class Login extends Component {
             )
             .then(response => {  // con withCredentials decimos que queremos enviar las cookies al servidor
                 if (response.data.status === 'created') {
-                  this.props.handleSuccessfulAuth(); // Llamamos a la funcion que maneja el login exitoso
+                  this.props.handleSuccessfulAuth(this.state.email); // Llamamos a la funcion que maneja el login exitoso
 
                 } else {
                   this.setState({ errorText: "Wrong email or password" });
@@ -60,10 +60,11 @@ export default class Login extends Component {
     return (
       <div>
          <h1>LOGIN TO ACCESS YOUR DASHBOARD</h1>
-         <div>{this.state.errorText}</div>
+         <div className='warning-text'>{this.state.errorText}</div>
 
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}  className='portfolio-form-wrapper'>
             <input 
+                className=''
                 type="text"
                 name="email" // Tiene que coincidir con el nombre del estado {email}
                 placeholder="Your email"
@@ -78,8 +79,8 @@ export default class Login extends Component {
                 onChange={this.handleChange} // Actualiza el estado cuando el usuario escribe
             /> 
 
-            <div>
-                 <button type="submit">Login</button>
+            <div className='btn-auhth-wrapper'>
+                 <button type="submit" className='btn'>Login</button>
         
             </div>
         </form> 

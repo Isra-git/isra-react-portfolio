@@ -12,5 +12,21 @@
     justify-content: center;
     align-items: center;
     background-color: $offwhite;
+    padding: 20px;
   }
+}
+
+.btn-auhth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.warning-text {
+  color: $warning;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
 }

@@ -17,7 +17,24 @@ export default class PortfolioManager extends Component {
         //Damos acceso a this en el método
         this.handleSuccessfullFormSubmision = this.handleSuccessfullFormSubmision.bind(this);
         this.handleFormSubmissionError = this.handleFormSubmissionError.bind(this);
+        this.handleDeleteClick = this.handleDeleteClick.bind(this);
     }
+
+    // Método para eliminar un elemento del portafolio
+    handleDeleteClick(portfolioItem){
+        axios.delete(`https://isradev.devcamp.space/portfolio/portfolio_items/${portfolioItem.id}`, 
+        {withCredentials: true}).then(response => {
+            this.setState({
+                portfolioItems: this.state.portfolioItems.filter(item => { 
+                    // Devolvemos todos los elementos menos el que hemos eliminado
+                    return item.id !== portfolioItem.id
+                })
+            });
+            this.getPortfolioItems();
+        }).catch(error => {
+            console.log("error delete", error);
+        });
+    }  ///Falta terminar este método¡¡¡¡¡
 
     handleSuccessfullFormSubmision(portfolioItem){
     // Añdimos el nuevo elemento al estado (matriz de elementos del portafolio)
@@ -60,7 +77,10 @@ export default class PortfolioManager extends Component {
             </div>
 
             <div className='right-column'>
-                <PortfolioSidebarList data={this.state.portfolioItems} />
+                <PortfolioSidebarList 
+                data={this.state.portfolioItems} 
+                handleDeleteClick={this.handleDeleteClick}
+                />
             </div>
         </div>
 

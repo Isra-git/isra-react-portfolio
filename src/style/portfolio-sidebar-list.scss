@@ -1,11 +1,83 @@
-.portfolio-sidebar-list-wrapper{
 
-    .portfolio-item-thumb{
-        padding: 21px;
 
-    .portfolio-thumb-img img{
-        width: 100%;
-        border-radius: 13px;
-    }
-    }
+.portfolio-sidebar-list-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-item-thumb {
+  padding: 21px 0;
+  border-bottom: 1px solid #f5f5f5; /* $offwhite */
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.portfolio-thumb-img img {
+  width: 100%;
+  border-radius: 13px;
+  object-fit: cover;
+}
+
+.portfolio-info {
+  width: 100%;
+    display: flex;
+    justify-content: space-around;
+  align-items: center;
+
+  margin-top: 10px;
+}
+.info-line {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+}
+
+.info-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+
+.portfolio-info .title {
+  font-size: 1.2rem;
+  margin: 5px 0;
+}
+
+.portfolio-info .category {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.portfolio-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+.icon-button:hover {
+  color: #ff4d4d; /* rojo para eliminar */
+}
+
+.icon-button:last-child:hover {
+  color: #4da6ff; /* azul para editar */
+}
+
+.carpeta, .etiqueta {
+    color: $teal;
 }

@@ -32,7 +32,7 @@ const PortfolioSidebarList = (props) => {
           >
             <FaTrash />
           </button>
-          <button className="icon-button">
+          <button onClick={()=> props.handleEditClick(portfolioItem)} className="icon-button">
             <FaEdit />
           </button>
         </div>

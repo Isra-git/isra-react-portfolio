@@ -22,6 +22,9 @@
   font-weight: bold;
   margin-bottom: 0.5rem;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 // Área de drop interactiva
@@ -63,7 +66,6 @@
     margin-bottom: 8px;
   }
 }
-
 
 // Vista previa de la imagen subida
 .dropzone-preview-inline {

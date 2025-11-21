@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 //componentes de react router para manejar las rutas
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import NavigationContainer from "./navigation/navigation-container";
-import Home from "./pages/home";
-import About from "./pages/about";
-import Contact from "./pages/contact";
-import Blog from "./pages/blog";
-import PortfolioManager from "./pages/portfolio-manager";
-import PortfolioDetail from "./pages/portfolio-detail";
-import Auth from "./pages/auth";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import NavigationContainer from './navigation/navigation-container';
+import Home from './pages/home';
+import About from './pages/about';
+import Contact from './pages/contact';
+import Blog from './pages/blog';
+import BlogDetail from './pages/blog-detail';
+import PortfolioManager from './pages/portfolio-manager';
+import PortfolioDetail from './pages/portfolio-detail';
+import Auth from './pages/auth';
 //import NoMatch from "./pages/no-match";
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import '../style/main.scss';
 
@@ -20,8 +22,8 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      loggedInStatus: "NOT_LOGGED_IN",
-      userEmail: ""
+      loggedInStatus: 'NOT_LOGGED_IN',
+      userEmail: '',
     };
 
     this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
@@ -32,65 +34,65 @@ export default class App extends Component {
   //Logeado con éxito
   handleSuccessfulLogin(email) {
     //Guardamos el email del usuario en el almacenamiento local
-     localStorage.setItem("userEmail", email);
-     // Actualizamos el estado
+    localStorage.setItem('userEmail', email);
+    // Actualizamos el estado
     this.setState({
-      loggedInStatus: "LOGGED_IN",
-      userEmail: email
+      loggedInStatus: 'LOGGED_IN',
+      userEmail: email,
     });
   }
 
   //No logeado
   handleUnSuccessfulLogin() {
     this.setState({
-      loggedInStatus: "NOT_LOGGED_IN"
+      loggedInStatus: 'NOT_LOGGED_IN',
     });
   }
 
   //Cierra sesión
   handleSuccessfulLogout() {
     this.setState({
-      loggedInStatus: "NOT_LOGGED_IN"
+      loggedInStatus: 'NOT_LOGGED_IN',
     });
   }
 
   //Comprobamos el estado del login
   checkLoginStatus() {
     return axios
-      .get("https://api.devcamp.space/logged_in", {
-        withCredentials: true
+      .get('https://api.devcamp.space/logged_in', {
+        withCredentials: true,
       })
       .then(response => {
         const loggedIn = response.data.logged_in;
         const loggedInStatus = this.state.loggedInStatus;
 
-        if (loggedIn && loggedInStatus === "LOGGED_IN") {
+        if (loggedIn && loggedInStatus === 'LOGGED_IN') {
           return loggedIn;
-        } else if (loggedIn && loggedInStatus === "NOT_LOGGED_IN") {
+        } else if (loggedIn && loggedInStatus === 'NOT_LOGGED_IN') {
           this.setState({
-            loggedInStatus: "LOGGED_IN"
+            loggedInStatus: 'LOGGED_IN',
           });
-        } else if (!loggedIn && loggedInStatus === "LOGGED_IN") {
+        } else if (!loggedIn && loggedInStatus === 'LOGGED_IN') {
           this.setState({
-            loggedInStatus: "NOT_LOGGED_IN"
+            loggedInStatus: 'NOT_LOGGED_IN',
           });
         }
       })
       .catch(error => {
-        console.log("Error", error);
+        console.log('Error', error);
       });
   }
 
-  //Comprobamos el estado del login cuando el componente se monta para saber si 
+  //Comprobamos el estado del login cuando el componente se monta para saber si
   // el usuario ya estaba logeado y si esta guardado el mail en el almacenamiento local
   componentDidMount() {
-  this.checkLoginStatus().then(() => {
-    const savedEmail = localStorage.getItem("userEmail");
-    if (savedEmail && this.state.loggedInStatus === "LOGGED_IN") {
-      this.setState({ userEmail: savedEmail });
-    }
-  });
-}
+    this.checkLoginStatus().then(() => {
+      const savedEmail = localStorage.getItem('userEmail');
+      if (savedEmail && this.state.loggedInStatus === 'LOGGED_IN') {
+        this.setState({ userEmail: savedEmail });
+      }
+    });
+  }
 
   //Rutas que solo se renderizan si estás logeado
   authorizedPages() {
@@ -99,15 +101,13 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className='container'>
+      <div className="container">
         <Router>
           <div>
-
             <NavigationContainer
               loggedInStatus={this.state.loggedInStatus}
               handleSuccessfulLogout={this.handleSuccessfulLogout}
               userEmail={this.state.userEmail}
-
             />
 
             <Switch>
@@ -130,17 +130,15 @@ export default class App extends Component {
               <Route path="/about-me" component={About} />
               <Route path="/contact" component={Contact} />
               <Route path="/blog" component={Blog} />
+              <Route path="/b/:slug" component={BlogDetail} />
 
               {/* Comprueba si estás logeado para ver la página */}
-              {this.state.loggedInStatus === "LOGGED_IN"
-                ? this.authorizedPages()
-                : null}
+              {this.state.loggedInStatus === 'LOGGED_IN' ? this.authorizedPages() : null}
 
               <Route path="/portfolio/:id" component={PortfolioDetail} />
 
               {/* <Route component={NoMatch} /> */}
             </Switch>
-
           </div>
         </Router>
       </div>

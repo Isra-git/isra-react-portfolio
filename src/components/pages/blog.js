@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BlogItem from '../blog/blog-item';
+import BlogModal from '../modals/blog-modal';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
 class Blog extends Component {
   constructor() {
@@ -16,6 +17,7 @@ class Blog extends Component {
       totalCount: 0,
       currentPage: 1,
       isLoading: true,
+      blogModalIsOpen: false,
     };
 
     // cerrojo para no cargar dos veces la misma coleccion de entradas del blog
@@ -24,6 +26,29 @@ class Blog extends Component {
     // bindeamos las funciones
     this.getBlogItems = this.getBlogItems.bind(this);
     this.onScroll = this.onScroll.bind(this);
+    this.handleNewBlogClick = this.handleNewBlogClick.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
+    this.handleSuccessfullNewBlogSubmission = this.handleSuccessfullNewBlogSubmission.bind(this);
+  }
+
+  handleSuccessfullNewBlogSubmission(blog) {
+    this.setState({
+      blogModalIsOpen: false,
+      blogItems: [blog].concat(this.state.blogItems),
+    });
+  }
+  // cierra el modal (click fuera / esc)
+  handleModalClose() {
+    this.setState({
+      blogModalIsOpen: false,
+    });
+  }
+
+  // abre el modal para añadir nuevas entradas al blog
+  handleNewBlogClick() {
+    this.setState({
+      blogModalIsOpen: true,
+    });
   }
 
   // controla -> scroll infinito
@@ -105,6 +130,21 @@ class Blog extends Component {
 
     return (
       <div className="blog-container">
+        <BlogModal
+          handleModalClose={this.handleModalClose}
+          modalIsOpen={this.state.blogModalIsOpen}
+          handleSuccessfullNewBlogSubmission={this.handleSuccessfullNewBlogSubmission}
+        />
+
+        {/* Si esta logeado */}
+        {this.props.loggedInStatus === 'LOGGED_IN' ? (
+          <div className="new-blog-link">
+            <a onClick={this.handleNewBlogClick}>
+              <FontAwesomeIcon icon={faCirclePlus} />
+            </a>
+          </div>
+        ) : null}
+
         <div className="content-container">{blogRecords}</div>
 
         {this.state.isLoading ? (

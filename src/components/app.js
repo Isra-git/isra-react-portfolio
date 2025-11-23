@@ -129,7 +129,12 @@ export default class App extends Component {
               <Route path="/portfolio" component={Auth} />
               <Route path="/about-me" component={About} />
               <Route path="/contact" component={Contact} />
-              <Route path="/blog" component={Blog} />
+
+              <Route
+                path="/blog"
+                render={props => <Blog {...props} loggedInStatus={this.state.loggedInStatus} />}
+              />
+
               <Route path="/b/:slug" component={BlogDetail} />
 
               {/* Comprueba si estás logeado para ver la página */}

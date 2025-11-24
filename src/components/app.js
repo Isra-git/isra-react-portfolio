@@ -12,9 +12,10 @@ import BlogDetail from './pages/blog-detail';
 import PortfolioManager from './pages/portfolio-manager';
 import PortfolioDetail from './pages/portfolio-detail';
 import Auth from './pages/auth';
-//import NoMatch from "./pages/no-match";
+import NoMatch from './pages/nomatch';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
+//import Icons from '../helpers/icons';
 import '../style/main.scss';
 
 export default class App extends Component {
@@ -142,7 +143,7 @@ export default class App extends Component {
 
               <Route path="/portfolio/:id" component={PortfolioDetail} />
 
-              {/* <Route component={NoMatch} /> */}
+              <Route component={NoMatch} />
             </Switch>
           </div>
         </Router>

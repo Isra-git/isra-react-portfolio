@@ -2,6 +2,15 @@
 
 import axios from 'axios';
 import React, { Component } from 'react';
+import BlogFeaturedImage from '../blog/blog-featured-image';
+/* Version Librerias para el parser de html a string y vicersa
+
+- html-react-parser@3.0.4
+- htmlparser2@8.0.1
+
+*/
+
+import parse from 'html-react-parser';
 
 export default class BlogDetail extends Component {
   constructor(props) {
@@ -41,12 +50,9 @@ export default class BlogDetail extends Component {
       <div className="blog-container">
         <div className="content-container">
           <h1> {title}</h1>
-
-          <div className="featured-image-wrapper">
-            <img src={featured_image_url} />
-          </div>
-
-          <div className="content">{content}</div>
+          <BlogFeaturedImage featured_image_url={featured_image_url} />
+          {/* Espera a que se renderice el componente para parsear el html  */}
+          {content && <div className="content">{parse(content)}</div>}
         </div>
       </div>
     );

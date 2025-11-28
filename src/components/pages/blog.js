@@ -55,13 +55,6 @@ class Blog extends Component {
   onScroll() {
     // si el nº de pagina coincide con la ultima, o esta 'cargando' mas no solicita mas registros
     if (this.isFetching || this.state.blogItems.length === this.state.totalCount) {
-      console.log(
-        `isFetching:${this.isFetching}
-        `,
-        `itemsLenght:${this.state.blogItems.length}`,
-        `totalCount:${this.state.totalCount}`
-      );
-
       return;
     }
 

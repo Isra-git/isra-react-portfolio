@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
+import ImageDropzone from '../portfolio/ImageDropzone';
 
 import RichTextEditor from '../forms/rich-text-editor';
 
@@ -13,12 +14,23 @@ export default class BlogForm extends Component {
       title: '',
       blog_status: '',
       content: '',
+      featured_image: null,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRichTextEditorChange = this.handleRichTextEditorChange.bind(this);
+    this.handleFileSelect = this.handleFileSelect.bind(this);
+    this.handleRemoveFile = this.handleRemoveFile.bind(this);
   }
+
+  //maneja el componente imageDropzone para select la imagen del blog
+  handleFileSelect = file => {
+    this.setState({ featured_image: file });
+  };
+  handleRemoveFile = () => {
+    this.setState({ featured_image: null });
+  };
 
   // maneja los cambios en el editor de texto DraftJS
   handleRichTextEditorChange(content) {
@@ -32,21 +44,30 @@ export default class BlogForm extends Component {
     formData.append('portfolio_blog[blog_status]', this.state.blog_status);
     formData.append('portfolio_blog[content]', this.state.content);
 
+    if (this.state.featured_image) {
+      formData.append('portfolio_blog[featured_image]', this.state.featured_image);
+    }
     return formData;
   }
 
   //maneja el envio del formularios
   handleSubmit(event) {
+    // //depuracion
+    // const formData = this.buildForm();
+    // for (let pair of formData.entries()) {
+    //   console.log(pair[0] + ', ' + pair[1]);
+    // }
+    //Actualizamos el estado antes de llamar axios y desmontar el componente
+    this.setState({
+      title: '',
+      blog_status: '',
+      content: '',
+    });
     axios
       .post('https://isradev.devcamp.space/portfolio/portfolio_blogs', this.buildForm(), {
         withCredentials: true,
       })
       .then(response => {
-        this.setState({
-          title: '',
-          blog_status: '',
-          content: '',
-        });
         this.props.handleSuccessfullFormSubmission(response.data.portfolio_blog);
       })
       .catch(error => {
@@ -84,6 +105,14 @@ export default class BlogForm extends Component {
         </div>
         <div className="one-column">
           <RichTextEditor handleRichTextEditorChange={this.handleRichTextEditorChange} />
+        </div>
+        <div className="one-column">
+          <ImageDropzone
+            label="Imagen destacada"
+            onFileSelect={this.handleFileSelect}
+            onRemove={this.handleRemoveFile}
+            imageUrl={this.state.featured_image_url}
+          />
         </div>
         <button className="btn">Save</button>
       </form>

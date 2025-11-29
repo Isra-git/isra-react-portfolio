@@ -43,6 +43,7 @@ const BlogItem = props => {
           </Link>
         </div>
       </div>
+      {/* Resume el contenido del blog a {n} lines y añade un enlace "..." al blog*/}
       <Truncate
         lines={4}
         ellipsis={
@@ -53,8 +54,6 @@ const BlogItem = props => {
       >
         {content && <div>{striptags(content)}</div>}
       </Truncate>
-      {/* {content && <div>{parse(content)}</div>} */}
-      {/*<div>{truncateAtSpace(content)}</div>*/}
       <div className="line-wrapper">
         <hr />
       </div>

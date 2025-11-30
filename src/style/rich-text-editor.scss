@@ -1,0 +1,31 @@
+.DraftEditor-root {
+  border: 0px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+
+  //height: 200px;
+}
+.rdw-editor-main {
+  //height: 180px;
+  padding: 5px;
+  margin-top: 20px;
+  //border: 1px solid $teal;
+  border-radius: 3px;
+}
+.rdw-editor-toolbar {
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+}
+.ReactModal__Content {
+  position: absolute;
+  top: 40px; /* margen fijo desde arriba */
+  left: 50%; /* centrado horizontal */
+  transform: translateX(-50%); /* solo centrado horizontal */
+  width: 800px;
+  height: 90vh; /* ocupa el 90% del alto del viewport */
+  border: 1px solid #ccc;
+  background: #fff;
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+}

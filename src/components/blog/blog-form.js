@@ -52,12 +52,6 @@ export default class BlogForm extends Component {
 
   //maneja el envio del formularios
   handleSubmit(event) {
-    // //depuracion
-    // const formData = this.buildForm();
-    // for (let pair of formData.entries()) {
-    //   console.log(pair[0] + ', ' + pair[1]);
-    // }
-    //Actualizamos el estado antes de llamar axios y desmontar el componente
     this.setState({
       title: '',
       blog_status: '',
@@ -86,6 +80,7 @@ export default class BlogForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="blog-form-wrapper">
+        {/* <div className="modal-title">Nuevo Blog</div> */}
         <div className="two-column">
           <input
             type="text"
@@ -103,18 +98,23 @@ export default class BlogForm extends Component {
             value={this.state.blog_status}
           />
         </div>
-        <div className="one-column">
+
+        <div className="one-column editor-content">
           <RichTextEditor handleRichTextEditorChange={this.handleRichTextEditorChange} />
         </div>
-        <div className="one-column">
-          <ImageDropzone
-            label="Imagen destacada"
-            onFileSelect={this.handleFileSelect}
-            onRemove={this.handleRemoveFile}
-            imageUrl={this.state.featured_image_url}
-          />
+        <div className="two-column-blog">
+          <div className="image-blog">
+            <ImageDropzone
+              label="Imagen destacada"
+              onFileSelect={this.handleFileSelect}
+              onRemove={this.handleRemoveFile}
+              imageUrl={this.state.featured_image_url}
+            />
+          </div>
+          <div className="btn-blog-modal">
+            <button className="btn">Save</button>
+          </div>
         </div>
-        <button className="btn">Save</button>
       </form>
     );
   }

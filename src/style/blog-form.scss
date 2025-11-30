@@ -9,3 +9,25 @@
     margin-bottom: 10px;
   }
 }
+.image-blog {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%; /* ocupa todo el ancho disponible */
+  margin-bottom: 20px;
+}
+.two-column-blog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.btn-blog-modal {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 60%;
+}
+.btn-blog-modal .btn {
+  width: 100%; /* el botón se estira al 100% del contenedor padre */
+}

@@ -16,6 +16,8 @@ export default class RichTextEditor extends Component {
     };
 
     this.onEditorStateChange = this.onEditorStateChange.bind(this);
+    this.getBase64 = this.getBase64.bind(this);
+    this.uploadFile = this.uploadFile.bind(this);
   }
 
   // se pasa al editor como props para manejar, el segundo argumento es una func. que
@@ -28,13 +30,29 @@ export default class RichTextEditor extends Component {
       )
     );
   }
+  // onEditorStateChange(editorState) {
+  //   this.setState({ editorState }, () => {
+  //     const html = draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()));
+  //     console.log(html); // aquí ves el HTML generado
+  //     this.props.handleRichTextEditorChange(html);
+  //   });
+  // }
 
   //usa FileReader para convertir una imagen a bas64(string)
-  getBase64(file, callback) {}
+  getBase64(file, callback) {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    //gestiona la peticion asincrona de readAsDataURL
+    reader.onload = () => callback(reader.result);
+    //si hay un error devolvemos un objeto vacio
+    reader.onerror = error => {};
+  }
 
-  //callback toma el archivo como argumento
+  // //callback toma el archivo como argumento
   uploadFile(file) {
-    console.log('uploade file', file);
+    return new Promise((resolve, reject) => {
+      this.getBase64(file, data => resolve({ data: { link: data } }));
+    });
   }
 
   render() {

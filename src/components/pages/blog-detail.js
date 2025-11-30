@@ -2,7 +2,13 @@
 
 import axios from 'axios';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import BlogFeaturedImage from '../blog/blog-featured-image';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleLeft } from '@fortawesome/free-solid-svg-icons';
+
 /* Version Librerias para el parser de html a string y vicersa
 
 - html-react-parser@3.0.4
@@ -53,6 +59,11 @@ export default class BlogDetail extends Component {
           <BlogFeaturedImage featured_image_url={featured_image_url} />
           {/* Espera a que se renderice el componente para parsear el html  */}
           {content && <div className="content">{parse(content)}</div>}
+        </div>
+        <div className="blog-back-wrapper">
+          <Link to="/blog">
+            <FontAwesomeIcon icon={faCircleLeft} />
+          </Link>
         </div>
       </div>
     );

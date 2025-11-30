@@ -91,3 +91,25 @@
     }
   }
 }
+.blog-back-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // height: 100vh;
+  // width: 100vw;
+}
+
+.blog-back-wrapper a {
+  font-size: 3em;
+  color: $teal;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:visited {
+    color: $teal;
+  }
+
+  &:hover {
+    color: $dark-teal;
+  }
+}

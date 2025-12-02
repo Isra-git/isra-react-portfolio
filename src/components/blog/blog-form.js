@@ -4,6 +4,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ImageDropzone from '../portfolio/ImageDropzone';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+
 import RichTextEditor from '../forms/rich-text-editor';
 
 export default class BlogForm extends Component {
@@ -15,6 +18,7 @@ export default class BlogForm extends Component {
       blog_status: '',
       content: '',
       featured_image: null,
+      isLoading: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -52,10 +56,13 @@ export default class BlogForm extends Component {
 
   //maneja el envio del formularios
   handleSubmit(event) {
-    this.setState({
-      title: '',
-      blog_status: '',
-      content: '',
+    this.setState({ isLoading: true }, () => {
+      this.setState({
+        title: '',
+        blog_status: '',
+        content: '',
+        featured_image: null,
+      });
     });
     axios
       .post('https://isradev.devcamp.space/portfolio/portfolio_blogs', this.buildForm(), {
@@ -63,9 +70,11 @@ export default class BlogForm extends Component {
       })
       .then(response => {
         this.props.handleSuccessfullFormSubmission(response.data.portfolio_blog);
+        this.setState({ isLoading: false });
       })
       .catch(error => {
         console.log('Handle submit err: ', error);
+        this.setState({ isLoading: false });
       });
 
     event.preventDefault();
@@ -111,6 +120,11 @@ export default class BlogForm extends Component {
               imageUrl={this.state.featured_image_url}
             />
           </div>
+          {this.state.isLoading ? (
+            <div className="content-loader">
+              <FontAwesomeIcon icon={faSpinner} spin />
+            </div>
+          ) : null}
           <div className="btn-blog-modal">
             <button className="btn">Save</button>
           </div>

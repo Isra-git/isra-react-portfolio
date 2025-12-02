@@ -17,6 +17,7 @@ import { faCircleLeft } from '@fortawesome/free-solid-svg-icons';
 */
 
 import parse from 'html-react-parser';
+import BlogForm from '../blog/blog-form';
 
 export default class BlogDetail extends Component {
   constructor(props) {
@@ -26,7 +27,15 @@ export default class BlogDetail extends Component {
       // recuperamos el id del blog de la url a traves de los props (automatico)
       currentId: this.props.match.params.slug,
       blogItem: {},
+      editMode: false,
     };
+
+    this.handleEditClick = this.handleEditClick.bind(this);
+  }
+
+  // si estamos registrados (admin), permite editar el blog
+  handleEditClick() {
+    this.setState({ editMode: true });
   }
 
   // Conseguimos la info de la entrada(id) del blog que queremos
@@ -49,17 +58,27 @@ export default class BlogDetail extends Component {
   }
 
   render() {
-    console.log('current id:', this.state.currentId);
     const { title, content, featured_image_url, blog_status } = this.state.blogItem;
+    // Maneja la logica del modo edicion del blog (admin-only)
+    const contentManager = () => {
+      if (this.state.editMode) {
+        return <BlogForm />;
+      } else {
+        return (
+          <div className="content-container">
+            <h1 onClick={this.handleEditClick}> {title} </h1>
 
+            <BlogFeaturedImage featured_image_url={featured_image_url} />
+
+            {/* Espera a que se renderice el componente para parsear el html  */}
+            {content && <div className="content">{parse(content)}</div>}
+          </div>
+        );
+      }
+    };
     return (
       <div className="blog-container">
-        <div className="content-container">
-          <h1> {title}</h1>
-          <BlogFeaturedImage featured_image_url={featured_image_url} />
-          {/* Espera a que se renderice el componente para parsear el html  */}
-          {content && <div className="content">{parse(content)}</div>}
-        </div>
+        {contentManager()}
         <div className="blog-back-wrapper">
           <Link to="/blog">
             <FontAwesomeIcon icon={faCircleLeft} />

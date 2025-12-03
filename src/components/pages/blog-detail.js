@@ -62,11 +62,13 @@ export default class BlogDetail extends Component {
     // Maneja la logica del modo edicion del blog (admin-only)
     const contentManager = () => {
       if (this.state.editMode) {
-        return <BlogForm />;
+        return <BlogForm editMode={this.state.editMode} blog={this.state.blogItem} />;
       } else {
         return (
           <div className="content-container">
-            <h1 onClick={this.handleEditClick}> {title} </h1>
+            <h1 onClick={this.handleEditClick} className="h1-to-edit">
+              {title}
+            </h1>
 
             <BlogFeaturedImage featured_image_url={featured_image_url} />
 

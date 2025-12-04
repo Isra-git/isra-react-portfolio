@@ -19,6 +19,8 @@ export default class BlogForm extends Component {
       content: '',
       featured_image: null,
       isLoading: false,
+      apiUrl: 'https://isradev.devcamp.space/portfolio/portfolio_blogs',
+      apiAction: 'post',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -30,11 +32,14 @@ export default class BlogForm extends Component {
   }
 
   componentDidMount() {
-    if (this.props.editMode && this.props.blog) {
+    if (this.props.editMode) {
       this.setState({
         id: this.props.blog.id,
         title: this.props.blog.title,
         blog_status: this.props.blog.blog_status,
+        content: this.props.blog.content,
+        apiUrl: `https://isradev.devcamp.space/portfolio/portfolio_blogs/${this.props.blog.id}`,
+        apiAction: 'patch',
       });
     }
   }
@@ -57,7 +62,7 @@ export default class BlogForm extends Component {
         // Limpia el estado para que el dropzone quede vacío
         this.setState({ featured_image: null });
         // llamanos a la funcion del componente {blogDetail} para que se actualice
-        handleFeaturedImageDelete();
+        this.props.handleFeaturedImageDelete(); //AÑADIDO
       })
       .catch(error => {
         console.log('deleteImage error', error);
@@ -100,13 +105,23 @@ export default class BlogForm extends Component {
         featured_image: null,
       });
     });
-    axios
-      .post('https://isradev.devcamp.space/portfolio/portfolio_blogs', this.buildForm(), {
-        withCredentials: true,
-      })
+
+    axios({
+      method: this.state.apiAction,
+      url: this.state.apiUrl,
+      data: this.buildForm(),
+      withCredentials: true,
+    })
       .then(response => {
-        this.props.handleSuccessfullFormSubmission(response.data.portfolio_blog);
-        this.setState({ isLoading: false });
+        if (this.props.editMode) {
+          // actualizamos el blog
+          this.setState({ isLoading: false });
+          this.props.handleUpdateFormSubmission(response.data.portfolio_blog);
+        } else {
+          this.setState({ isLoading: false });
+          this.props.handleSuccessfullFormSubmission(response.data.portfolio_blog);
+        }
+        //SACADO DEL IF/ELSE
       })
       .catch(error => {
         console.log('Handle submit err: ', error);

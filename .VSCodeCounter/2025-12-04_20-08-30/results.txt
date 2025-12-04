@@ -1,0 +1,111 @@
+Date : 2025-12-04 20:08:30
+Directory : c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio
+Total : 62 files,  29608 codes, 170 comments, 458 blanks, all 30236 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JSON       |          3 |     26,010 |          0 |          3 |     26,013 |
+| JavaScript |         35 |      1,910 |        129 |        326 |      2,365 |
+| SCSS       |         21 |      1,668 |         39 |        119 |      1,826 |
+| HTML       |          1 |         15 |          2 |          4 |         21 |
+| Markdown   |          2 |          5 |          0 |          6 |         11 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                               | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                                  |         62 |     29,608 |        170 |        458 |     30,236 |
+| . (Files)                                                                                                                          |          7 |     26,028 |          0 |         10 |     26,038 |
+| proxy                                                                                                                              |          1 |         24 |          0 |          1 |         25 |
+| src                                                                                                                                |         48 |      3,302 |        165 |        404 |      3,871 |
+| src (Files)                                                                                                                        |          2 |         23 |          2 |          8 |         33 |
+| src\actions                                                                                                                        |          1 |          0 |          0 |          1 |          1 |
+| src\components                                                                                                                     |         22 |      1,593 |        124 |        271 |      1,988 |
+| src\components (Files)                                                                                                             |          1 |        121 |         11 |         22 |        154 |
+| src\components\auth                                                                                                                |          1 |         72 |          1 |         17 |         90 |
+| src\components\blog                                                                                                                |          3 |        209 |         25 |         33 |        267 |
+| src\components\forms                                                                                                               |          1 |        207 |         14 |          9 |        230 |
+| src\components\modals                                                                                                              |          1 |         39 |          1 |          6 |         46 |
+| src\components\navigation                                                                                                          |          1 |         79 |          2 |         18 |         99 |
+| src\components\pages                                                                                                               |          9 |        367 |         44 |         81 |        492 |
+| src\components\portfolio                                                                                                           |          5 |        499 |         26 |         85 |        610 |
+| src\helpers                                                                                                                        |          1 |         13 |          0 |          3 |         16 |
+| src\reducers                                                                                                                       |          1 |          5 |          0 |          2 |          7 |
+| src\style                                                                                                                          |         21 |      1,668 |         39 |        119 |      1,826 |
+| static                                                                                                                             |          2 |         18 |          2 |          7 |         27 |
+| static (Files)                                                                                                                     |          1 |         15 |          2 |          4 |         21 |
+| static\assets                                                                                                                      |          1 |          3 |          0 |          3 |          6 |
+| webpack                                                                                                                            |          4 |        236 |          3 |         36 |        275 |
++------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                                           | language   | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\.eslintrc.js                                       | JavaScript |          1 |          0 |          1 |          2 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\.prettierrc                                        | JSON       |          1 |          0 |          1 |          2 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\README.md                                          | Markdown   |          2 |          0 |          3 |          5 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\env.js                                             | JavaScript |          6 |          0 |          1 |          7 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\package-lock.json                                  | JSON       |     25,910 |          0 |          1 |     25,911 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\package.json                                       | JSON       |         99 |          0 |          1 |        100 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\proxy\rules.js                                     | JavaScript |         24 |          0 |          1 |         25 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\server.js                                          | JavaScript |          9 |          0 |          2 |         11 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\actions\index.js                               | JavaScript |          0 |          0 |          1 |          1 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\bootstrap.js                                   | JavaScript |         20 |          0 |          5 |         25 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\app.js                              | JavaScript |        121 |         11 |         22 |        154 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\auth\login.js                       | JavaScript |         72 |          1 |         17 |         90 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\blog\blog-featured-image.js         | JavaScript |         11 |          0 |          2 |         13 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\blog\blog-form.js                   | JavaScript |        159 |          9 |         21 |        189 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\blog\blog-item.js                   | JavaScript |         39 |         16 |         10 |         65 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\forms\rich-text-editor.js           | JavaScript |        207 |         14 |          9 |        230 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\modals\blog-modal.js                | JavaScript |         39 |          1 |          6 |         46 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\navigation\navigation-container.js  | JavaScript |         79 |          2 |         18 |         99 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\pages\about.js                      | JavaScript |          8 |          0 |          2 |         10 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\pages\auth.js                       | JavaScript |         35 |          4 |         17 |         56 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\pages\blog-detail.js                | JavaScript |         80 |         13 |         16 |        109 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\pages\blog.js                       | JavaScript |        115 |         16 |         22 |        153 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\pages\contact.js                    | JavaScript |          8 |          0 |          2 |         10 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\pages\home.js                       | JavaScript |          9 |          0 |          2 |         11 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\pages\nomatch.js                    | JavaScript |         14 |          0 |          2 |         16 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\pages\portfolio-detail.js           | JavaScript |          9 |          0 |          4 |         13 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\pages\portfolio-manager.js          | JavaScript |         89 |         11 |         14 |        114 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\portfolio\ImageDropzone.js          | JavaScript |        104 |         12 |         15 |        131 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\portfolio\portfolio-container.js    | JavaScript |         73 |          7 |         23 |        103 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\portfolio\portfolio-form.js         | JavaScript |        236 |          0 |         28 |        264 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\portfolio\portfolio-item.js         | JavaScript |         42 |          7 |         13 |         62 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\components\portfolio\portfolio-sidebar-list.js | JavaScript |         44 |          0 |          6 |         50 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\helpers\icons.js                               | JavaScript |         13 |          0 |          3 |         16 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\reducers\index.js                              | JavaScript |          5 |          0 |          2 |          7 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\auth.scss                                | SCSS       |         27 |          0 |          5 |         32 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\base.scss                                | SCSS       |         12 |          0 |          3 |         15 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\blog-form.scss                           | SCSS       |         32 |          0 |          2 |         34 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\blog.scss                                | SCSS       |         94 |         10 |         15 |        119 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\button.scss                              | SCSS       |          3 |          0 |          2 |          5 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\forms.scss                               | SCSS       |         17 |          0 |          1 |         18 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\grid.scss                                | SCSS       |         12 |          0 |          2 |         14 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\image-dropzone.scss                      | SCSS       |         81 |         11 |         12 |        104 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\loaders.scss                             | SCSS       |          4 |          1 |          1 |          6 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\main.scss                                | SCSS       |         20 |          0 |          1 |         21 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\mixins.scss                              | SCSS       |         43 |          1 |          6 |         50 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\modals.scss                              | SCSS       |          4 |          1 |          1 |          6 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\navigation.scss                          | SCSS       |         64 |          0 |         21 |         85 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\nomatch.scss                             | SCSS       |         46 |          0 |          7 |         53 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\portfolio-form.scss                      | SCSS       |         22 |          0 |          4 |         26 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\portfolio-manager.scss                   | SCSS       |         10 |          0 |          3 |         13 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\portfolio-sidebar-list.scss              | SCSS       |         68 |          0 |         16 |         84 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\portfolio.scss                           | SCSS       |         50 |          0 |         11 |         61 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\react-draft-wysiwyg.scss                 | SCSS       |      1,016 |         10 |          2 |      1,028 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\rich-text-editor.scss                    | SCSS       |         36 |          3 |          2 |         41 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\style\variables.scss                           | SCSS       |          7 |          2 |          2 |         11 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\src\vendor.js                                      | JavaScript |          3 |          2 |          3 |          8 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\static\assets\README.md                            | Markdown   |          3 |          0 |          3 |          6 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\static\index.html                                  | HTML       |         15 |          2 |          4 |         21 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\webpack\common.config.js                           | JavaScript |         39 |          1 |          8 |         48 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\webpack\dev.config.js                              | JavaScript |         77 |          1 |         17 |         95 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\webpack\postcss.config.js                          | JavaScript |          5 |          0 |          1 |          6 |
+| c:\Users\villa\Desktop\html-css\Full-stack\Proyectos\React\isra-react-portfolio\webpack\prod.config.js                             | JavaScript |        115 |          1 |         10 |        126 |
+| Total                                                                                                                              |            |     29,608 |        170 |        458 |     30,236 |
++------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

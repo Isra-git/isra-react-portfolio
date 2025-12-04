@@ -32,12 +32,22 @@ export default class BlogDetail extends Component {
 
     this.handleEditClick = this.handleEditClick.bind(this);
     this.handleFeaturedImageDelete = this.handleFeaturedImageDelete.bind(this);
+    this.handleUpdateFormSubmission = this.handleUpdateFormSubmission.bind(this);
+  }
+
+  // maneja la creacion del formulario [buildForm()] cuando se esta editando el blog
+  handleUpdateFormSubmission(blog) {
+    this.setState({
+      blogItem: blog,
+      editMode: false,
+    });
   }
 
   // actualiza cambios cuando se borra una imagen al editar el blog
   handleFeaturedImageDelete() {
     this.setState({
       blogItem: {
+        ...this.state.blogItem, //AÑADIDO
         featured_image_url: '',
       },
     });
@@ -74,6 +84,7 @@ export default class BlogDetail extends Component {
       if (this.state.editMode) {
         return (
           <BlogForm
+            handleUpdateFormSubmission={this.handleUpdateFormSubmission}
             handleFeaturedImageDelete={this.handleFeaturedImageDelete}
             editMode={this.state.editMode}
             blog={this.state.blogItem}

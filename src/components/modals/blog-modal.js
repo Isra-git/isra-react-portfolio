@@ -38,7 +38,10 @@ export default class BlogModal extends Component {
         }}
         isOpen={this.props.modalIsOpen}
       >
-        <BlogForm handleSuccessfullFormSubmission={this.handleSuccessfullFormSubmission} />
+        <BlogForm
+          handleSuccessfullFormSubmission={this.handleSuccessfullFormSubmission}
+          editMode={false}
+        />
       </ReactModal>
     );
   }

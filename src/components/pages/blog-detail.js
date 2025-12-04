@@ -31,6 +31,16 @@ export default class BlogDetail extends Component {
     };
 
     this.handleEditClick = this.handleEditClick.bind(this);
+    this.handleFeaturedImageDelete = this.handleFeaturedImageDelete.bind(this);
+  }
+
+  // actualiza cambios cuando se borra una imagen al editar el blog
+  handleFeaturedImageDelete() {
+    this.setState({
+      blogItem: {
+        featured_image_url: '',
+      },
+    });
   }
 
   // si estamos registrados (admin), permite editar el blog
@@ -62,7 +72,13 @@ export default class BlogDetail extends Component {
     // Maneja la logica del modo edicion del blog (admin-only)
     const contentManager = () => {
       if (this.state.editMode) {
-        return <BlogForm editMode={this.state.editMode} blog={this.state.blogItem} />;
+        return (
+          <BlogForm
+            handleFeaturedImageDelete={this.handleFeaturedImageDelete}
+            editMode={this.state.editMode}
+            blog={this.state.blogItem}
+          />
+        );
       } else {
         return (
           <div className="content-container">

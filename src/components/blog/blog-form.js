@@ -26,16 +26,42 @@ export default class BlogForm extends Component {
     this.handleRichTextEditorChange = this.handleRichTextEditorChange.bind(this);
     this.handleFileSelect = this.handleFileSelect.bind(this);
     this.handleRemoveFile = this.handleRemoveFile.bind(this);
+    this.deleteImage = this.deleteImage.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.editMode) {
+    if (this.props.editMode && this.props.blog) {
       this.setState({
-        id: this.props.id,
+        id: this.props.blog.id,
         title: this.props.blog.title,
         blog_status: this.props.blog.blog_status,
       });
     }
+  }
+
+  // maneja la eliminacion de la imagen del blog, en modo edicion
+  deleteImage(imageType) {
+    const { id } = this.state;
+
+    if (!id) {
+      console.warn(`No se puede eliminar ${imageType} porque el ID es undefined.`);
+      return;
+    }
+
+    axios
+      .delete(
+        `https://isradev.devcamp.space/portfolio/delete-portfolio-blog-image/${id}?image_type=${imageType}`,
+        { withCredentials: true }
+      )
+      .then(response => {
+        // Limpia el estado para que el dropzone quede vacío
+        this.setState({ featured_image: null });
+        // llamanos a la funcion del componente {blogDetail} para que se actualice
+        handleFeaturedImageDelete();
+      })
+      .catch(error => {
+        console.log('deleteImage error', error);
+      });
   }
 
   //maneja el componente imageDropzone para select la imagen del blog
@@ -129,12 +155,23 @@ export default class BlogForm extends Component {
         </div>
         <div className="two-column-blog">
           <div className="image-blog">
-            <ImageDropzone
-              label="Imagen destacada"
-              onFileSelect={this.handleFileSelect}
-              onRemove={this.handleRemoveFile}
-              imageUrl={this.state.featured_image_url}
-            />
+            {/* gestiona el modo edicion para la imagen featured_image_url  */}
+
+            {this.props.editMode && this.props.blog.featured_image_url ? (
+              <ImageDropzone
+                label="Edit Image"
+                onFileSelect={this.handleFileSelect}
+                onRemove={() => this.deleteImage('featured_image')}
+                imageUrl={this.props.blog.featured_image_url || null}
+              />
+            ) : (
+              <ImageDropzone
+                label="Main Image"
+                onFileSelect={this.handleFileSelect}
+                onRemove={this.handleRemoveFile}
+                imageUrl={null} //{this.state.featured_image_url}
+              />
+            )}
           </div>
           {this.state.isLoading ? (
             <div className="content-loader">

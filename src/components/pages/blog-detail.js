@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import BlogFeaturedImage from '../blog/blog-featured-image';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faCircleLeft, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 /* Version Librerias para el parser de html a string y vicersa
 
@@ -28,6 +28,7 @@ export default class BlogDetail extends Component {
       currentId: this.props.match.params.slug,
       blogItem: {},
       editMode: false,
+      isLoading: true,
     };
 
     this.handleEditClick = this.handleEditClick.bind(this);
@@ -55,7 +56,9 @@ export default class BlogDetail extends Component {
 
   // si estamos registrados (admin), permite editar el blog
   handleEditClick() {
-    this.setState({ editMode: true });
+    if (this.props.loggedInStatus === 'LOGGED_IN') {
+      this.setState({ editMode: true });
+    }
   }
 
   // Conseguimos la info de la entrada(id) del blog que queremos
@@ -65,6 +68,7 @@ export default class BlogDetail extends Component {
       .then(response => {
         this.setState({
           blogItem: response.data.portfolio_blog,
+          isLoading: false,
         });
       })
       .catch(error => {
@@ -78,10 +82,13 @@ export default class BlogDetail extends Component {
   }
 
   render() {
+    // logeado?
+    const logeado = this.props.loggedInStatus === 'LOGGED_IN';
+
     const { title, content, featured_image_url, blog_status } = this.state.blogItem;
     // Maneja la logica del modo edicion del blog (admin-only)
     const contentManager = () => {
-      if (this.state.editMode) {
+      if (this.state.editMode && logeado) {
         return (
           <BlogForm
             handleUpdateFormSubmission={this.handleUpdateFormSubmission}
@@ -93,7 +100,7 @@ export default class BlogDetail extends Component {
       } else {
         return (
           <div className="content-container">
-            <h1 onClick={this.handleEditClick} className="h1-to-edit">
+            <h1 onClick={this.handleEditClick} className={logeado ? 'h1-to-edit' : ''}>
               {title}
             </h1>
 
@@ -107,6 +114,11 @@ export default class BlogDetail extends Component {
     };
     return (
       <div className="blog-container">
+        {this.state.isLoading ? (
+          <div className="content-loader">
+            <FontAwesomeIcon icon={faSpinner} spin />
+          </div>
+        ) : null}
         {contentManager()}
         <div className="blog-back-wrapper">
           <Link to="/blog">

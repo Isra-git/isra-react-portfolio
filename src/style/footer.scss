@@ -1,0 +1,57 @@
+.footer-container {
+  background-color: #f9f9f9; // Color de fondo gris claro
+  color: #333; // Color de texto oscuro
+  font-family: 'Montserrat', 'Verdana', sans-serif; // Fuente moderna, con Verdana como fallback
+  padding: 2rem 1.5rem; // Espaciado interno generoso
+  border-top: 1px solid #eee; // Línea superior sutil
+  text-align: center; // Centrar el texto por defecto
+
+  .footer-content {
+    max-width: 1200px; // Limita el ancho del contenido en pantallas grandes
+    margin: 0 auto; // Centra el contenido
+    display: flex; // Usa flexbox para el layout
+    flex-direction: column; // Por defecto en columna para mobile
+    gap: 1.5rem; // Espacio entre los bloques de contenido
+
+    @media (min-width: 768px) {
+      flex-direction: row; // En filas para tablet y desktop
+      justify-content: space-between; // Espacio entre los elementos
+      align-items: center; // Alinea verticalmente al centro
+    }
+
+    .footer-info {
+      p {
+        margin: 0.5rem 0; // Espacio entre párrafos
+        font-size: 0.95rem; // Tamaño de fuente ligeramente más pequeño
+        line-height: 1.5; // Espaciado de línea
+      }
+
+      .highlight {
+        font-weight: 700; // Negrita para resaltar
+        color: #555; // Un color un poco más oscuro
+        letter-spacing: 0.5px; // Espaciado de letras sutil
+      }
+    }
+
+    .footer-contact {
+      .email-link {
+        display: inline-flex; // Para alinear el icono con el texto
+        align-items: center; // Alineación vertical del icono
+        color: $dark-teal; // Un color azul para el enlace, que destaca
+        text-decoration: none; // Sin subrayado por defecto
+        font-weight: 600; // Semi-negrita
+        font-size: 1rem; // Tamaño de fuente estándar
+
+        &:hover {
+          color: $teal; // Color más oscuro al pasar el ratón
+          text-decoration: underline; // Subrayado al pasar el ratón
+        }
+
+        .email-icon {
+          margin-right: 0.5rem; // Espacio entre el icono y el texto
+          font-size: 1.1rem; // Tamaño del icono
+        }
+      }
+    }
+  }
+}

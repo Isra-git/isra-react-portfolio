@@ -1,0 +1,237 @@
+.about-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  //grid-gap: 20px;
+  width: 100%;
+  height: calc(100vh - 188px);
+  padding: 0 0em;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  .left-wrapper {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    // background-attachment: fixed; //Imagen fija
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    color: $offwhite;
+    font-family: 'Trebuchet MS', Tahoma, Verdana, Arial, sans-serif;
+    letter-spacing: 2px;
+    font-size: 2em;
+    //opacity: 0.9;
+
+    .left-silk {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(32, 123, 136, 0.5); /* negro al 50% */
+      //color: $teal;
+      position: absolute;
+      inset: 0; /* ocupa todo el contenedor padre */
+    }
+
+    h1 {
+      position: relative; /* para que quede encima del overlay */
+      z-index: 1;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+    }
+  }
+
+  /*
+  $teal: #26bfd4;
+$dark-teal: #207b88;
+$charcoal: #42454a;
+$offwhite: #f6f6f6;
+$blue: #008dff;
+$warning: #922a2a;
+$grey: #8a8a8a;
+  */
+
+  .right-wrapper {
+    padding: 2em;
+    overflow-y: auto;
+
+    //formacion academica
+    .education-section {
+      margin-top: 2rem;
+
+      .subtitle {
+        text-align: left;
+        margin-bottom: 1rem;
+        color: $dark-teal; // Usando tu variable
+        border-bottom: 2px solid $teal; // Línea sutil
+        padding-bottom: 0.5rem;
+        font-size: 1.5rem;
+      }
+    }
+
+    .studies-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Sombra elegante
+
+      // Cabecera de la tabla
+      th {
+        background-color: $dark-teal; // Color oscuro para cabecera
+        color: $offwhite; // Texto blanco
+        padding: 1rem;
+        text-align: left;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        font-weight: 600;
+      }
+
+      // Celdas del cuerpo
+      td {
+        padding: 1rem;
+        border-bottom: 1px solid #ddd;
+        background-color: $offwhite; // Fondo blanco roto
+        font-size: 0.95rem;
+
+        // Oculta las etiquetas de datos por defecto (para escritorio)
+        &[data-label] {
+          display: table-cell;
+        }
+      }
+
+      // Estilo para el enlace (Certificados y FP)
+      .study-link {
+        color: $blue; // Usando tu variable azul para enlaces
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.2s ease-in-out;
+
+        &:hover {
+          color: $teal; // Cambio de color al pasar el ratón
+          text-decoration: underline;
+        }
+      }
+
+      // Efecto hover en las filas
+      tbody tr:hover {
+        background-color: #f0f0f0;
+      }
+
+      // Estilos para el modo responsive (móvil)
+      @media (max-width: 600px) {
+        thead {
+          display: none; // Oculta la cabecera en móvil
+        }
+
+        tr {
+          display: block; // Cada fila se convierte en un bloque
+          margin-bottom: 1rem;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+        }
+
+        td {
+          display: block;
+          text-align: right;
+          border: none;
+          position: relative;
+          padding-left: 50%; // Espacio para la etiqueta
+
+          // Muestra la etiqueta de datos (ej. "Tipo:")
+          &::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 10px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+            font-weight: 700;
+            color: $charcoal; // Un color oscuro para las etiquetas
+            text-align: left;
+          }
+        }
+      }
+    }
+
+    //
+    // scroll derecho
+    &::-webkit-scrollbar {
+      width: 4px; // Fina
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $teal; // Color $teal (#26bfd4)
+      border-radius: 4px; // Bordes redondeados
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent; // Fondo transparente
+    }
+    // css sobre mi
+    .about-me {
+      font-family: 'Oswald', sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .about-me .title {
+      color: $dark-teal;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .about-me .intro {
+      text-align: center;
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .about-me .subtitle {
+      color: $teal;
+      margin-top: 2rem;
+    }
+
+    .about-me .strengths {
+      list-style: none;
+      padding: 0;
+    }
+
+    .about-me .strengths li {
+      background: lightgray;
+      font-weight: 550;
+      letter-spacing: 2px;
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+    }
+
+    .about-me .stack-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    .about-me .stack-table th {
+      background: #009688;
+      color: white;
+      padding: 0.8rem;
+      text-align: left;
+    }
+
+    .about-me .stack-table td {
+      padding: 0.8rem;
+      background: #e0f7fa;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode',
+        Geneva, Verdana, sans-serif;
+      font-weight: 550;
+    }
+
+    .about-me .closing {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 2rem;
+      color: #009688;
+    }
+  }
+}

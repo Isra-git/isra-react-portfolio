@@ -17,6 +17,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 //import Icons from '../helpers/icons';
 import '../style/main.scss';
+import Footer from './pages/footer';
 
 export default class App extends Component {
   constructor(props) {
@@ -104,7 +105,7 @@ export default class App extends Component {
     return (
       <div className="container">
         <Router>
-          <div>
+          <div className="navbar">
             <NavigationContainer
               loggedInStatus={this.state.loggedInStatus}
               handleSuccessfulLogout={this.handleSuccessfulLogout}
@@ -136,7 +137,12 @@ export default class App extends Component {
                 render={props => <Blog {...props} loggedInStatus={this.state.loggedInStatus} />}
               />
 
-              <Route path="/b/:slug" component={BlogDetail} />
+              <Route
+                path="/b/:slug"
+                render={props => (
+                  <BlogDetail {...props} loggedInStatus={this.state.loggedInStatus} />
+                )}
+              />
 
               {/* Comprueba si estás logeado para ver la página */}
               {this.state.loggedInStatus === 'LOGGED_IN' ? this.authorizedPages() : null}
@@ -145,6 +151,7 @@ export default class App extends Component {
 
               <Route component={NoMatch} />
             </Switch>
+            <Footer />
           </div>
         </Router>
       </div>

@@ -35,25 +35,21 @@ export default function About() {
               </thead>
               <tbody>
                 <tr className="cert-row">
-                  {' '}
                   {/* Usamos una clase de fila existente */}
                   <td data-label="Área">Frontend</td>
                   <td data-label="Tecnologías">React, JavaScript, Tailwind, CSS, SCSS, HTML</td>
                 </tr>
                 <tr className="fp-row">
-                  {' '}
                   {/* Usamos una clase de fila existente */}
                   <td data-label="Área">Backend</td>
                   <td data-label="Tecnologías">Python, Javascript, FastAPI, Node.js</td>
                 </tr>
                 <tr className="autodidacta-row">
-                  {' '}
                   {/* Usamos una clase de fila existente */}
                   <td data-label="Área">Bases de datos</td>
                   <td data-label="Tecnologías">MySQL, PostgreSQL, MongoDB, SQL Server</td>
                 </tr>
                 <tr className="bach-row">
-                  {' '}
                   {/* Usamos una clase de fila existente */}
                   <td data-label="Área">DevOps / Otros</td>
                   <td data-label="Tecnologías">Git, Linux, Docker, AWS, (conocimientos básicos)</td>

@@ -1,62 +1,55 @@
 //Creacion de un componente funcional
-import React, {Component} from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 export default class PortfolioItem extends Component {
-    //Data that we'll need:
-    // -background image :  thumb_image_url
-    // - logo
-    // - description : description
-    // -id :    id
-    constructor(props){
-        super(props);
+  //Data that we'll need:
+  // -background image :  thumb_image_url
+  // - logo
+  // - description : description
+  // -id :    id
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            portfolioItemClass: ""
-        };
-    }
+    this.state = {
+      portfolioItemClass: '',
+    };
+  }
 
-    //Manejadores de eventos
-    handleMouseEnter(){ 
-        this.setState({portfolioItemClass: "image-blur"});
-    }
-    handleMouseLeave(){
-        this.setState({portfolioItemClass: ""});
+  //Manejadores de eventos
+  handleMouseEnter() {
+    this.setState({ portfolioItemClass: 'image-blur' });
+  }
+  handleMouseLeave() {
+    this.setState({ portfolioItemClass: '' });
+  }
 
-    }
+  render() {
+    const { id, description, thumb_image_url, logo_url } = this.props.item;
 
-
-    render(){
-    const { id, description,thumb_image_url, logo_url} = this.props.item;
-
-    return(
-        <div 
-            className="portfolio-item-wrapper"
-            onMouseEnter={() => this.handleMouseEnter()} //si no se coloca la llamada a handleMouseEnter() dentro de una funcion flecha, se ejecuta automaticamente al renderizar el componente 
-            onMouseLeave={() => this.handleMouseLeave()}
-            
+    return (
+      <Link to={`/portfolio/${id}`}>
+        <div
+          className="portfolio-item-wrapper"
+          onMouseEnter={() => this.handleMouseEnter()} //si no se coloca la llamada a handleMouseEnter() dentro de una funcion flecha, se ejecuta automaticamente al renderizar el componente
+          onMouseLeave={() => this.handleMouseLeave()}
         >
-            <div
-             className={"portfolio-img-background " + this.state.portfolioItemClass} //Añade la clase que maneja el estado
-             style={{
-                backgroundImage: "url(" + thumb_image_url + ")"
-              }}
-            />
-           
-           <div className="img-text-wrapper">
-                <div className="logo-wrapper">
-                    <img src={logo_url} alt="isra" />
-                </div>
+          <div
+            className={'portfolio-img-background ' + this.state.portfolioItemClass} //Añade la clase que maneja el estado
+            style={{
+              backgroundImage: 'url(' + thumb_image_url + ')',
+            }}
+          />
 
-                <div className="subtitle">             
-                    {description}
-                </div>
+          <div className="img-text-wrapper">
+            <div className="logo-wrapper">
+              <img src={logo_url} alt="isra" />
             </div>
-         
-            {/* <Link to= {`/portfolio/${id}`}>Link</Link> */}
-          
-            
+
+            <div className="subtitle">{description}</div>
+          </div>
         </div>
+      </Link>
     );
-    }
+  }
 }

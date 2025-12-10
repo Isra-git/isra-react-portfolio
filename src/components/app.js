@@ -128,7 +128,7 @@ export default class App extends Component {
                 )}
               />
 
-              <Route path="/portfolio" component={Auth} />
+              {/* <Route path="/portfolio" component={Auth} /> */}
               <Route path="/about-me" component={About} />
               <Route path="/contact" component={Contact} />
 
@@ -147,7 +147,7 @@ export default class App extends Component {
               {/* Comprueba si estás logeado para ver la página */}
               {this.state.loggedInStatus === 'LOGGED_IN' ? this.authorizedPages() : null}
 
-              <Route path="/portfolio/:id" component={PortfolioDetail} />
+              <Route path="/portfolio/:slug" component={PortfolioDetail} />
 
               <Route component={NoMatch} />
             </Switch>

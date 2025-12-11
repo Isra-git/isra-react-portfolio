@@ -1,0 +1,194 @@
+/* =========================================
+   1. CONTENEDOR PRINCIPAL (Layout Fix)
+   ========================================= */
+.project-card-container {
+  /* Calcula la altura mínima para empujar el footer hacia abajo:
+     100vh (toda la pantalla) - 85px (nav) - 103px (footer) */
+  min-height: calc(100vh - 188px);
+
+  /* Centrado horizontal de la tarjeta */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alineado arriba para permitir el margin-top */
+
+  /* Color de fondo suave para que destaque la tarjeta blanca */
+  background-color: #f8f9fa;
+  width: 100%;
+}
+
+/* =========================================
+   2. LA TARJETA (Card)
+   ========================================= */
+.project-card {
+  /* TUS REQUISITOS */
+  width: 80%;
+  margin-top: 50px; /* Margen superior */
+  margin-bottom: 50px; /* Margen inferior para no pegar al footer */
+
+  /* Estética y límites */
+  max-width: 1100px; /* Evita que se estire demasiado en pantallas gigantes */
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Sombra elegante */
+  overflow: hidden; /* Para recortar la imagen del banner en las esquinas */
+  position: relative;
+}
+
+/* =========================================
+   3. BANNER SUPERIOR
+   ========================================= */
+.project-banner {
+  height: 300px;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  background-color: #ddd; /* Color de carga por si falla la imagen */
+}
+
+/* Badge de Categoría */
+.category-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* =========================================
+   4. CUERPO Y CONTENIDO
+   ========================================= */
+.project-body {
+  padding: 0 40px 40px 40px;
+  position: relative;
+}
+
+/* =========================================
+   5. EL LOGO SUPERPUESTO (Overlap)
+   ========================================= */
+.project-logo-wrapper {
+  width: 110px;
+  height: 110px;
+  background-color: $charcoal;
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  /* LA MAGIA: Margen negativo para subirlo sobre el banner */
+  margin-top: -55px;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 20px; /* Espacio entre logo y título */
+}
+
+.project-logo-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Asegura que el logo se vea entero */
+  border-radius: 6px;
+}
+
+/* =========================================
+   6. INFO: TÍTULO Y BOTÓN
+   ========================================= */
+.header-row {
+  display: flex;
+  justify-content: space-between; /* Título a la izq, Botón a la der */
+  align-items: flex-end; /* Alineados abajo */
+  margin-bottom: 25px;
+  flex-wrap: wrap; /* Para móviles: permite que bajen si no caben */
+  gap: 20px;
+}
+
+.header-row h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  line-height: 1.1;
+}
+
+.btn-visit {
+  display: inline-block;
+  background-color: $teal;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  white-space: nowrap; /* Que no se rompa el texto del botón */
+}
+
+.btn-visit:hover {
+  background-color: $dark-teal;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* =========================================
+   7. DESCRIPCIÓN
+   ========================================= */
+.description {
+  font-size: 1.1rem;
+  line-height: 1.7; /* Buen espacio para lectura */
+  color: #4b5563; /* Gris oscuro para texto */
+  margin: 0;
+  max-width: 80ch; /* Ancho máximo de lectura cómodo */
+}
+
+/* =========================================
+   8. RESPONSIVE (Móviles)
+   ========================================= */
+@media (max-width: 768px) {
+  .project-card {
+    width: 95%; /* En móvil aprovechamos más espacio */
+    margin-top: 20px;
+  }
+
+  .project-banner {
+    height: 200px;
+  }
+
+  .project-body {
+    padding: 0 20px 30px 20px;
+  }
+
+  .header-row h1 {
+    font-size: 1.8rem;
+  }
+
+  .btn-visit {
+    width: 100%; /* Botón ancho completo en móvil */
+    text-align: center;
+  }
+}
+
+.portfolio-back-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // height: 100vh;
+  // width: 100vw;
+}
+
+.portfolio-back-wrapper a {
+  font-size: 3em;
+  color: $teal;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:visited {
+    color: $teal;
+  }
+
+  &:hover {
+    color: $dark-teal;
+  }
+}

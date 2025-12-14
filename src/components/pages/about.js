@@ -47,7 +47,7 @@ export default function About() {
                 <tr className="autodidacta-row">
                   {/* Usamos una clase de fila existente */}
                   <td data-label="Área">Bases de datos</td>
-                  <td data-label="Tecnologías">MySQL, PostgreSQL, MongoDB, SQL Server</td>
+                  <td data-label="Tecnologías">MySQL, PostgreSQL, MongoDB</td>
                 </tr>
                 <tr className="bach-row">
                   {/* Usamos una clase de fila existente */}
@@ -111,9 +111,7 @@ export default function About() {
             <h2 className="subtitle">Mis fortalezas</h2>
             <ul className="strengths">
               <li>✅ Aprendiz metódico y curioso</li>
-              <li>
-                🛠️ Conocimientos en hardware, montaje y reparación desde 1995 hasta la actualidad
-              </li>
+              <li>🛠️ Conocimientos solidos en hardware, montaje y reparación</li>
               <li>🎨 Pasión por el diseño frontend y efectos CSS elegantes</li>
               <li>🖥️ Conocimientos sobre Backend y arquitectura de sistemas </li>
               <li>🔒 Interés en seguridad digital y buenas prácticas</li>

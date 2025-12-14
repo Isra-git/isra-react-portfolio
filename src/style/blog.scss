@@ -90,6 +90,34 @@
       color: $dark-teal;
     }
   }
+  .admin-blog-wrapper {
+    margin-bottom: 20px;
+    padding: 10px 0;
+    //border-bottom: 1px solid lighten($charcoal, 60%);
+
+    /* ESTILO DEL ENLACE DE BORRAR */
+    a.delete-blog {
+      display: inline;
+      float: right;
+      font-size: 0.8em;
+      font-weight: 700;
+      margin-right: 3.5em;
+      /* SOBRESCRITURA DEL COLOR $teal */
+      color: $charcoal;
+      cursor: pointer;
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+        color: $warning; /* Color de advertencia al hacer hover */
+      }
+
+      svg {
+        /* Asegura que el icono también cambie con el texto */
+        color: inherit;
+        margin-left: 5px;
+      }
+    }
+  }
 }
 .blog-back-wrapper {
   display: flex;

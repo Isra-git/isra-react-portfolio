@@ -5,7 +5,7 @@ import BlogItem from '../blog/blog-item';
 import BlogModal from '../modals/blog-modal';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faCirclePlus, faEraser } from '@fortawesome/free-solid-svg-icons';
 
 class Blog extends Component {
   constructor() {
@@ -29,8 +29,32 @@ class Blog extends Component {
     this.handleNewBlogClick = this.handleNewBlogClick.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleSuccessfullNewBlogSubmission = this.handleSuccessfullNewBlogSubmission.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
 
+  // Maneja la eliminacion de una entrada de blog, si isLoggedIN
+  handleDeleteClick(blog) {
+    axios
+      .delete(`https://api.devcamp.space/portfolio/portfolio_blogs/${blog.id}`, {
+        withCredentials: true,
+      })
+      .then(response => {
+        // actualizamos el estado de los blogs(blogItems) menos el eliminado != blog.id
+        this.setState({
+          blogItems: this.state.blogItems.filter(blogItem => {
+            return blog.id != blogItem.id;
+          }),
+        });
+
+        return response.data;
+      })
+      .catch(error => {
+        console.log('error deleting:', error);
+      });
+  }
+
+  //Comunica el abuelo(blog) con el padre(blog-modal) y con el nieto (blog-form )
+  //Actualiza la UI del padre despues de que se cree un nuevo registro
   handleSuccessfullNewBlogSubmission(blog) {
     this.setState({
       blogModalIsOpen: false,
@@ -118,7 +142,19 @@ class Blog extends Component {
   render() {
     // creamos una copia de los datos
     const blogRecords = this.state.blogItems.map(blogItem => {
-      return <BlogItem key={blogItem.id} blogItem={blogItem} />;
+      if (this.props.loggedInStatus === 'LOGGED_IN') {
+        return (
+          <div key={blogItem.id} className="admin-blog-wrapper">
+            <BlogItem blogItem={blogItem} />
+            <a className="delete-blog" onDoubleClick={() => this.handleDeleteClick(blogItem)}>
+              Double Clik to Delete
+              <FontAwesomeIcon icon={faEraser} />
+            </a>
+          </div>
+        );
+      } else {
+        return <BlogItem key={blogItem.id} blogItem={blogItem} />;
+      }
     });
 
     return (

@@ -15,7 +15,7 @@ export default function About() {
         }}
       >
         <div className="contact-left-silk">
-          <h1>Contact</h1>
+          {/* <h1>Contact</h1> */}
           <h1>israDev</h1>
         </div>
       </div>

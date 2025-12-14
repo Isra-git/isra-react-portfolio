@@ -54,9 +54,9 @@ const BlogItem = props => {
       >
         {content && <div>{striptags(content)}</div>}
       </Truncate>
-      <div className="line-wrapper">
+      {/* <div className="line-wrapper">
         <hr />
-      </div>
+      </div> */}
     </div>
   );
 };

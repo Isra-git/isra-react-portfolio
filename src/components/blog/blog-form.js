@@ -14,6 +14,7 @@ export default class BlogForm extends Component {
     super(props);
 
     this.state = {
+      id: '',
       title: '',
       blog_status: '',
       content: '',

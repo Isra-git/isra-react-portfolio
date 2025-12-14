@@ -32,12 +32,11 @@ export default class RichTextEditor extends Component {
   // se pasa al editor como props para manejar, el segundo argumento es una func. que
   // espera que se actualice el estado antes de llamarse (setState->Asincrono)
   onEditorStateChange(editorState) {
-    this.setState(
-      { editorState },
+    this.setState({ editorState }, () => {
       this.props.handleRichTextEditorChange(
         draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))
-      )
-    );
+      );
+    });
   }
   // onEditorStateChange(editorState) {
   //   this.setState({ editorState }, () => {

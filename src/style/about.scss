@@ -31,7 +31,8 @@
     .left-silk {
       width: 100%;
       height: 100%;
-      background-color: rgba(32, 123, 136, 0.5); /* negro al 50% */
+      background-color: rgba(32, 123, 136, 0.25);
+      //background-color: rgba(32, 123, 136, 0.5); /* negro al 50% */
       //color: $teal;
       position: absolute;
       inset: 0; /* ocupa todo el contenedor padre */

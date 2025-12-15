@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { NavLink, withRouter } from 'react-router-dom';
 
+import miLogo from '../../../static/assets/images/navbar/miLogo2.png';
+
 // Importamos FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
@@ -36,6 +38,9 @@ const NavigationComponent = props => {
 
   return (
     <div className="nav-wrapper">
+      <div className="logo-side">
+        <img src={miLogo} />
+      </div>
       <div className="left-side">
         <div className="nav-link-wrapper">
           <NavLink exact to="/" activeClassName="nav-link-active">
@@ -73,7 +78,7 @@ const NavigationComponent = props => {
                   year: '2-digit',
                 })}
               </span>
-              <span className="user-greeting">Hola </span>
+              <span className="user-greeting">Hi </span>
               <span className="user-email">{props.userEmail && props.userEmail.split('@')[0]}</span>
 
               <a onClick={handleSignOut} className="icon-link" aria-label="Cerrar sesión">
@@ -82,7 +87,7 @@ const NavigationComponent = props => {
             </div>
           ) : (
             <NavLink to="/auth" className="icon-link" aria-label="Iniciar sesión">
-              ENTRAR
+              LOGIN
               <FontAwesomeIcon icon={faCircleUser} />
             </NavLink>
           )}

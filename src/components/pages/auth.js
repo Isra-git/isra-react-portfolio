@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Login from '../auth/login';
 
 // importamos la imagen de fondo del login
-import loginImg from '../../../static/assets/images/auth/login.png';
+import loginImg from '../../../static/assets/images/auth/login.jpg';
 
 export default class Auth extends Component {
   constructor(props) {

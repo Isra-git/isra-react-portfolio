@@ -1,59 +1,63 @@
-.portfolio-items-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  // height: calc(100vh - 184px);
+.hero-wrapper {
+  height: calc(100vh - 184px);
 
-  .portfolio-item-wrapper {
-    position: relative;
+  .portfolio-items-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    //height: calc(100vh - 184px);
 
-    .portfolio-img-background {
-      width: 100%;
-      height: 350px;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
+    .portfolio-item-wrapper {
+      position: relative;
 
-    .img-text-wrapper {
-      position: absolute;
-      top: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      text-align: center;
-      padding-left: 100px;
-      padding-right: 100px;
+      .portfolio-img-background {
+        width: 100%;
+        height: 350px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
 
-      .subtitle {
-        transition: 1s ease-in-out;
-        color: transparent;
+      .img-text-wrapper {
+        position: absolute;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        text-align: center;
+        padding-left: 100px;
+        padding-right: 100px;
+
+        .subtitle {
+          transition: 1s ease-in-out;
+          color: transparent;
+        }
+      }
+
+      .img-text-wrapper:hover .subtitle {
+        color: $teal;
+        font-weight: 400;
+      }
+
+      .logo-wrapper img {
+        width: 50%;
+        margin-bottom: 20px;
       }
     }
-
-    .img-text-wrapper:hover .subtitle {
-      color: $teal;
-      font-weight: 400;
-    }
-
-    .logo-wrapper img {
-      width: 50%;
-      margin-bottom: 20px;
-    }
   }
-}
 
-.image-blur {
-  filter: brightness(10%);
-  transition: 1s;
-}
-.portfolio-filter-buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 0px;
-}
+  .image-blur {
+    filter: brightness(10%);
+    transition: 1s;
+  }
+  .portfolio-filter-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 0px;
+  }
 
-.portfolio-filter-buttons .btn {
-  flex: 1;
+  .portfolio-filter-buttons .btn {
+    flex: 1;
+  }
 }

@@ -11,8 +11,8 @@ const Footer = () => {
       <div className="footer-content">
         <div className="footer-info">
           <p>
-            Creado por <span className="highlight">IsraDev</span> &copy; {currentYear} MIT License
-            Copyright (c)
+            Creado por <span className="highlight">IsraDev - DevCamp, LLC</span>
+            {currentYear} MIT License
           </p>
         </div>
 

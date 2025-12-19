@@ -12,6 +12,8 @@ import { faBlog } from '@fortawesome/free-solid-svg-icons';
 const BlogItem = props => {
   const { id, blog_status, content, title, featured_image_url } = props.blogItem;
 
+  const { iconColor } = props;
+
   // const truncateAtSpace = (text, limit = 320) => {
   //   // si content es null-> devuelve un valor por defecto
   //   if (!text || typeof text != 'string') {
@@ -35,7 +37,7 @@ const BlogItem = props => {
     <div className="blog-content-wrapper">
       <div className="blog-item-title">
         <div>
-          <FontAwesomeIcon icon={faBlog} />
+          <FontAwesomeIcon icon={faBlog} style={{ color: iconColor }} />
         </div>
         <div>
           <Link to={`/b/${id}`}>

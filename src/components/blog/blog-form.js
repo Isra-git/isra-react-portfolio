@@ -16,7 +16,7 @@ export default class BlogForm extends Component {
     this.state = {
       id: '',
       title: '',
-      blog_status: '',
+      blog_status: 'draft', //valor por defecto
       content: '',
       featured_image: null,
       isLoading: false,
@@ -150,16 +150,24 @@ export default class BlogForm extends Component {
             placeholder="Blog Title"
             value={this.state.title}
           />
-
+          {/* 
           <input
             type="text"
             name="blog_status"
             onChange={this.handleChange}
             placeholder="Blog Status"
             value={this.state.blog_status}
-          />
+          /> */}
+          <select
+            name="blog_status"
+            value={this.state.blog_status}
+            onChange={this.handleChange}
+            className="select-element"
+          >
+            <option value="draft">Blog Status: Draft</option>
+            <option value="published">Blog Status: Published</option>
+          </select>
         </div>
-
         <div className="one-column editor-content">
           <RichTextEditor
             handleRichTextEditorChange={this.handleRichTextEditorChange}

@@ -8,6 +8,11 @@
   input {
     margin-bottom: 10px;
   }
+  select {
+    width: 50%;
+    background-color: lightsteelblue;
+    font-weight: 700;
+  }
 }
 .image-blog {
   display: flex;

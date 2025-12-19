@@ -18,6 +18,7 @@ class Blog extends Component {
       currentPage: 1,
       isLoading: true,
       blogModalIsOpen: false,
+      iconColors: ['#a29bfe', '#207b88', '#fdcb6e', '#55efc4'],
     };
 
     // cerrojo para no cargar dos veces la misma coleccion de entradas del blog
@@ -141,11 +142,15 @@ class Blog extends Component {
 
   render() {
     // creamos una copia de los datos
-    const blogRecords = this.state.blogItems.map(blogItem => {
+    const blogRecords = this.state.blogItems.map((blogItem, index) => {
       if (this.props.loggedInStatus === 'LOGGED_IN') {
+        // calculamos el color (indice del array)
+        const colorIndex = index % this.state.iconColors.length;
+        const currentColor = this.state.iconColors[colorIndex];
+
         return (
           <div key={blogItem.id} className="admin-blog-wrapper">
-            <BlogItem blogItem={blogItem} />
+            <BlogItem blogItem={blogItem} iconColor={currentColor} />
             <a className="delete-blog" onDoubleClick={() => this.handleDeleteClick(blogItem)}>
               Double Clik to Delete
               <FontAwesomeIcon icon={faEraser} />
